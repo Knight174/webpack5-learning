@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   // 输出文件
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
     assetModuleFilename: 'assets/[name]_[hash][ext]',
     clean: true,
