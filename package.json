@@ -10,6 +10,7 @@
     "start": "webpack serve",
     "watch": "webpack --watch",
     "dev": "webpack serve --config ./build/webpack.dev.config.js",
+    "dev-build": "webpack --config ./build/webpack.dev.config.js",
     "build": "webpack --config ./build/webpack.prod.config.js"
   },
   "keywords": [],
@@ -31,6 +32,7 @@
   "dependencies": {
     "@babel/runtime": "^7.15.3",
     "@babel/runtime-corejs3": "^7.15.3",
-    "core-js": "^3.16.2"
+    "core-js": "^3.16.2",
+    "lodash": "^4.17.21"
   }
 }

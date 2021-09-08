@@ -39,6 +39,10 @@ module.exports = {
     // 同步代码分割
     splitChunks: {
       chunks: 'all',
+      cacheGroups: {
+        defaultVendors: false,
+        default: false
+      },
     },
   }
 };
