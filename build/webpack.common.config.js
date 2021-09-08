@@ -36,6 +36,7 @@ module.exports = {
   ],
   // 性能优化
   optimization: {
+    // 同步代码分割
     splitChunks: {
       chunks: 'all',
     },
