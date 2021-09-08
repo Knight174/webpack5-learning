@@ -1,6 +1,6 @@
-const commonConfig = require('./build2/webpack.common.config.js')
-const productionConfig = require('./build2/webpack.prod.config.js')
-const developmentConfig = require('./build2/webpack.dev.config.js')
+const commonConfig = require('./build/webpack.common.config.js')
+const productionConfig = require('./build/webpack.prod.config.js')
+const developmentConfig = require('./build/webpack.dev.config.js')
 const { merge } = require('webpack-merge');
 
 

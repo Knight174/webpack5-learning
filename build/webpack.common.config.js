@@ -1,7 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const commonConfig = {
   // 入口文件
   entry: './src/index.js',
   // 输出文件
@@ -35,3 +35,5 @@ module.exports = {
     })
   ]
 };
+
+module.exports = commonConfig;

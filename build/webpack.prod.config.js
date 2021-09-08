@@ -1,4 +1,3 @@
-const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common.config');
 
 const prodConfig = {
@@ -6,4 +5,4 @@ const prodConfig = {
   devtool: 'nosources-source-map'
 };
 
-module.exports = merge(commonConfig, prodConfig);
+module.exports = prodConfig;
