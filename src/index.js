@@ -1,46 +1,25 @@
-// import './assets/styles/reset.css'
+// 同步代码
+// import _ from 'lodash';
+// let element = document.createElement('div');
+// element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+// document.body.appendChild(element);
 
-// // 箭头函数
-// const fn = (a, b) => a + b;
-
-// // Promise 对象
-// const promise1 = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve(add(1, 2));
-//   }, 1000);
-// });
-
-// const promise2 = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve(add(3, 4));
-//   }, 1000);
-// });
-
-// const promise3 = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve(add(5, 6));
-//   }, 1000);
-// });
-
-// Promise.all([promise1, promise2, promise3]).then(values => {
-//   console.log(values); // [3, 7, 11]
-// });
-
-// // Array.prototype.includes()
-// const arr = [1, 2, 3, 4, 5];
-// console.log(arr.includes(3)); // true
-
-// const root = document.getElementById('root');
-// root.innerHTML = add(1, 3);
-
-
-
-// import { add } from './assets/js/math'
-// console.log(add(1, 1));
-
-
-import _ from 'lodash';
-console.log(_.chunk(['a', 'b', 'c', 'd'], 2));
-
-import test from './assets/js/test';
-console.log(test);
+// 异步代码
+// function getComponent() {
+//   return import(/* webpackChunkName: "lodash" */ 'lodash').then(({ default: _ }) => {
+//     let element = document.createElement('div');
+//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+//     return element;
+//   });
+// }
+async function getComponent() {
+  const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
+  let element = document.createElement('div');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  return element;
+}
+document.addEventListener('click', () => {
+  getComponent().then(element => {
+    document.body.appendChild(element);
+  });
+});
