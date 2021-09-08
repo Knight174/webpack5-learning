@@ -33,5 +33,11 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: './src/index.html'
     })
-  ]
+  ],
+  // 性能优化
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  }
 };
