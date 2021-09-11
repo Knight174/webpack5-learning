@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   // 入口文件
@@ -10,7 +11,7 @@ module.exports = {
     filename: '[name].js',
     assetModuleFilename: 'assets/[name]_[hash][ext]',
     clean: true,
-    // chunkFilename: '[name].[hash:8].chunk.js' // 配置chunk文件名
+    chunkFilename: '[id].chunk.js' // 配置chunk文件名(non-initial chunks)
   },
   // 模块
   module: {
@@ -24,7 +25,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
         sideEffects: true
       }
     ]
@@ -33,35 +34,44 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: './src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
     })
   ],
-  // 性能优化
   optimization: {
-    // 同步代码分割
     splitChunks: {
-      chunks: 'all', // 同步、异步都会分割
-      minSize: 20000, // 如果模块大小小于这个值，则不会被分割
-      minRemainingSize: 0, // 如果模块大小小于这个值，则不会被分割
-      minChunks: 2, // 如果模块被引用次数小于这个值，则不会被分割
-      maxAsyncRequests: 30, // 异步模块，一次最多被加载的次数
-      maxInitialRequests: 30, // 入口模块最多被加载的次数
-      enforceSizeThreshold: 50000, // 如果模块大小超过这个值，则不会被分割
-      cacheGroups: { // 缓存组
-        // 打包第三方库
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/, // 正则匹配第三方库文件
-          priority: -10, // 优先级
-          reuseExistingChunk: true, // 如果一个模块已经被打包过了，那么这个模块也不会被打包
-          filename: 'vendors.[name].js' // 打包后的文件名
-        },
-        // 打包公共模块
-        default: {
-          minChunks: 2, // 被超过两个模块引用，才会被打包
-          priority: -20, // 优先级
-          reuseExistingChunk: true, // 如果一个模块已经被打包过了，那么这个模块也不会被打包
-          filename: 'common.js' // 打包后的文件名
-        },
-      },
-    },
+      chunks: 'all',
+    }
   }
+  // 性能优化
+  // optimization: {
+  //   // 同步代码分割
+  //   splitChunks: {
+  //     chunks: 'all', // 同步、异步都会分割
+  //     minSize: 20000, // 如果模块大小小于这个值，则不会被分割
+  //     minRemainingSize: 0, // 如果模块大小小于这个值，则不会被分割
+  //     minChunks: 1, // 如果模块被引用次数小于这个值，则不会被分割
+  //     maxAsyncRequests: 30, // 异步模块，一次最多被加载的次数
+  //     maxInitialRequests: 30, // 入口模块最多被加载的次数
+  //     enforceSizeThreshold: 50000, // 如果模块大小超过这个值，则不会被分割
+  //     cacheGroups: { // 缓存组
+  //       // 打包第三方库
+  //       defaultVendors: {
+  //         test: /[\\/]node_modules[\\/]/, // 正则匹配第三方库文件
+  //         priority: -10, // 优先级
+  //         reuseExistingChunk: true, // 如果一个模块已经被打包过了，那么这个模块也不会被打包
+  //         filename: 'vendors.js' // 打包后的文件名
+  //       },
+  //       // 打包公共模块
+  //       default: {
+  //         minChunks: 2, // 被超过两个模块引用，才会被打包
+  //         priority: -20, // 优先级
+  //         reuseExistingChunk: true, // 如果一个模块已经被打包过了，那么这个模块也不会被打包
+  //         filename: 'common.js' // 打包后的文件名
+  //       },
+  //     },
+  //   },
+  // }
 };
