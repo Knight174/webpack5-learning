@@ -1,7 +1,4 @@
-import "./assets/styles/reset.css"
+import * as math from './lib/math';
+import * as string from './lib/string';
 
-document.addEventListener('click', () => {
-  return import(/* webpackPrefetch: true */ './assets/js/click').then(({ default: fn }) => {
-    fn();
-  });
-});
+export { math, string };
