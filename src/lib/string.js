@@ -1,3 +1,7 @@
-const toString = Object.prototype.toString
+import _ from 'lodash';
 
-export { toString }
+const join = (a, b) => {
+  return _.join([a, b], ' ');
+}
+
+export { join }

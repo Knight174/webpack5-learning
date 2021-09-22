@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
+  externals: ['lodash'], // 忽略 lodash 的打包 (该选项常用于库的开发)
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'library.js',
