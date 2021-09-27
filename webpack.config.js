@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: 'production',
+  devtool: 'source-map',
   entry: './src/index.js',
   externals: ['lodash'], // 忽略 lodash 的打包 (该选项常用于库的开发)
   output: {
