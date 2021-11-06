@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const commonConfig = require('./webpack.common.config');
 
 const devConfig = {
   // 模式
