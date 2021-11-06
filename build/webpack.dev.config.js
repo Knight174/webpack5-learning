@@ -17,12 +17,21 @@ const devConfig = {
     compress: true,
     port: 8080,
     open: true,
-    hot: true // 代码变化后，自动刷新页面
+    hot: true, // 代码变化后，自动刷新页面
+    proxy: {
+      '/api': {
+        target: 'https://res.abeim.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '' // 将 /api 替换为空
+        }
+      }
+    }
   },
   // 插件
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};
 
 module.exports = devConfig;

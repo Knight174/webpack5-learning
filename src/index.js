@@ -33,7 +33,16 @@ console.log(arr.includes(3)); // true
 const root = document.getElementById('root');
 root.innerHTML = add(1, 3);
 
-
-
 import { add } from './assets/js/math'
 console.log(add(1, 1));
+
+// 測試接口
+import axios from 'axios';
+// axios.get('https://res.abeim.cn/api/api-text_sweet')
+//   .then(res => {
+//     console.log(res.data);
+//   })
+axios.get('/api/api-text_sweet')
+  .then(res => {
+    console.log(res.data);
+  })
