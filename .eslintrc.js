@@ -1,6 +1,18 @@
+// 代码检查
 module.exports = {
-  extends: ['airbnb'],
-  rules: {
-    semi: 0,
+  env: {
+    es6: true,
+    node: true,
+    browser: true,
+    commonjs: true,
   },
+  // 数组顺序很重要
+  extends: ['eslint:recommended', 'airbnb', 'prettier'],
+  parserOptions: {
+    sourceType: 'module',
+  },
+  rules: {
+    'prettier/prettier': 'error',
+  },
+  plugins: ['prettier'],
 }
