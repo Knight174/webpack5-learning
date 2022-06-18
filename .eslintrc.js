@@ -6,11 +6,9 @@ module.exports = {
     browser: true,
     commonjs: true,
   },
+  parser: '@babel/eslint-parser',
   // 数组顺序很重要
   extends: ['eslint:recommended', 'airbnb', 'prettier'],
-  parserOptions: {
-    sourceType: 'module',
-  },
   rules: {
     'prettier/prettier': 'error',
   },
