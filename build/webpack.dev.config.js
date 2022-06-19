@@ -1,14 +1,15 @@
-const path = require('path');
-const webpack = require('webpack');
-const { merge } = require('webpack-merge');
-const commonConfig = require('./webpack.common.config');
+const path = require('path')
+const webpack = require('webpack')
+const { merge } = require('webpack-merge')
+// const ESLintPlugin = require('eslint-webpack-plugin')
+const commonConfig = require('./webpack.common.config')
 
 const devConfig = {
   // 模式
   mode: 'development',
   // 性能优化 (tree shaking)
   optimization: {
-    usedExports: true
+    usedExports: true,
   },
   // source-map
   devtool: 'eval-cheap-module-source-map',
@@ -18,12 +19,10 @@ const devConfig = {
     compress: true,
     port: 8080,
     open: true,
-    hot: true // 代码变化后，自动刷新页面
+    hot: true, // 代码变化后，自动刷新页面
   },
   // 插件
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 }
 
-module.exports = merge(commonConfig, devConfig);
+module.exports = merge(commonConfig, devConfig)
